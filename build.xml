@@ -20,6 +20,9 @@
     </target>
 
     <target name="linux-bin" depends="jar">
+        <exec executable="echo">
+        <arg value="Building linux executable: ${basedir}/alvis"/>
+        </exec>
         <concat destfile="${basedir}/alvis" binary="yes">
             <fileset file="${basedir}/alvis.head"/>
             <fileset file="dist/Alvis.jar"/>
