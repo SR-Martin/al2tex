@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+MYSELF=`which "${0}" 2>/dev/null`
+[ $? -gt 0 -a -f "${0}" ] && MYSELF="./${0}"
+JAVA=java
+if test -n "${JAVA_HOME}"; then
+    JAVA="${JAVA_HOME}/bin/java"
+fi
+
+JVM_OPTS=""
+OPTS=""
+
+while [[ $# -gt 0 ]]; do
+  case ${1} in
+    --JVM|--java)
+    JVM_OPTS="${JVM_OPTS} ${2}"
+    shift
+    shift
+    ;;
+    --help|-h|help)
+    OPTS="${OPTS} ${1}"
+    echo "You can pass Java options using --JVM \"<options>\""
+    echo "For example: ${0} --JVM \"-Xmx2G -Xms100m\""
+    shift
+    ;;
+    *)
+    OPTS="${OPTS} ${1}"
+    shift
+    ;;
+  esac
+done
+
+exec "${JAVA}" ${JVM_OPTS} -jar ${MYSELF} ${OPTS}
+exit 1
