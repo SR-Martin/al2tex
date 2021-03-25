@@ -8,9 +8,16 @@ A jar file is included in the repository, and is all that is necessary to run Al
 If you wish to compile Alvis yourself, you may do so using the file ``build.xml`` found in the Alvis root directory, and `ant <http://ant.apache.org/>`_, as follows. In the terminal, type::
 
 	cd /path/to/Alvis/
-	ant clean compile jar
+	ant compile jar
 
 Then, to run Alvis::
 
 	cd dist
 	Java -jar Alvis.jar
+
+
+You can also build a linux executable directly (thanks to `rsuchecki
+<http://github.com/rsuchecki>`_ for providing this functionality)::
+
+	cd /path/to/Alvis/
+	ant linux-bin
